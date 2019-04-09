@@ -31,3 +31,18 @@
     transform: rotate(360deg);
   }
 }
+.BANK_DETAILS{
+  display: none;
+}
+.Bank_details {
+  margin: 2%;
+  background-color: #d9c5ac;
+  padding: 2%;
+  width: 42%;
+  border-radius: 20px;
+}
+.allBanks {
+  display: flex;
+  flex-wrap: wrap;
+}
+
