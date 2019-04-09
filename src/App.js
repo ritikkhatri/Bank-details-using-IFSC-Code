@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import jsonData from './5-example_sample.json'
+import jsonData from './data.json'
 import Select from 'react-select'
 import { Container, Row, Col } from 'react-grid-system';
 
