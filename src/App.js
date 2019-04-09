@@ -6,7 +6,7 @@ import Select from 'react-select'
 import { Container, Row, Col } from 'react-grid-system';
 
   
-  class NameForm extends React.Component {
+  class IFSC extends React.Component {
     constructor(props) {
       super(props);
       this.state = {value: '',
@@ -16,16 +16,14 @@ import { Container, Row, Col } from 'react-grid-system';
       },
       message :'',
     };
-      // this.onFormSubmit =this.onFormSubmit.bind(this); 
+    
       this.handleChange = this.handleChange.bind(this);
      var that = this;
     }
-  
     handleChange(event) {
       this.setState({
         value: event.target.value,
         }
-        
         );
     }
     onFormSubmit(e) {
@@ -36,26 +34,15 @@ import { Container, Row, Col } from 'react-grid-system';
         fetch('https://ifsc.razorpay.com/' + ifsc).then(function (response) {
           return response.json();
         }).then(function (result) {
-          // var address = result["ADDRESS"];
-          // var bank = result["BANK"];
-          // var result=[];
-          // result.push({'address': address,'bank': bank});
-         
           that.setState({result});
         });
-        
-        
-       
+    
         this.setState({
           style: {
-            
             display: 'block',
-            
-          },
-          
-          message: '',
+             },
+           message: '',
         })
-        console.log(this.state.result)
         if(this.state.message=="Please fill IFSC code"){
           this.setState({
             message: ''
@@ -66,22 +53,16 @@ import { Container, Row, Col } from 'react-grid-system';
         this.setState({
           message : "Please fill IFSC code",
           style: {
-            
             display: 'none',
-            
           },
         })
       }
-      
     }    
     render() {
       var dsply = this.state.style;
-      
-      
       var bank_detail = this.state.result;
-     console.log(this.state.result)
+     
       return (
-        
         <div> 
           <Row><Col md={4}></Col>
           <Col md={4}><h1> Search by IFSC Code</h1></Col>
@@ -91,7 +72,7 @@ import { Container, Row, Col } from 'react-grid-system';
           <Col md={4}>
         <form >
           <label>
-            IFSC CODE :
+          <b> IFSC Code : </b> 
              <input type="text" value={this.state.value}  onChange={this.handleChange} />
           </label>
           <input type="submit" value="Submit" onClick={this.onFormSubmit.bind(this)} />
@@ -104,30 +85,29 @@ import { Container, Row, Col } from 'react-grid-system';
         <Row><Col md={4}></Col>
           <Col md={4}>{this.state.message}<br></br>
           <div className="BANK_DETAILS" style={dsply}>
-            Bank Name : {bank_detail.BANK}<br></br>
-            Branch Name : {bank_detail.BRANCH}<br></br>
-            Address : {bank_detail.ADDRESS}<br></br>
-            IFSC Code : {bank_detail.IFSC}<br></br>
-            City : {bank_detail.CITY}
+           <b> Bank Name : </b> {bank_detail.BANK}<br></br>
+           <b>Branch Name : </b> {bank_detail.BRANCH}<br></br>
+           <b>Address : </b> {bank_detail.ADDRESS}<br></br>
+           <b>IFSC Code : </b> {bank_detail.IFSC}<br></br>
+           <b>City : </b> {bank_detail.CITY}<br></br>
+           <b>State : </b>  {bank_detail.STATE}
 
           </div></Col>
           <Col md={4}></Col>
           </Row>
         
-        
-        
         <br />
-        <Test />
+        <Search_By_City />
         </div>
 
 
       );
     }
   }
-  export default  NameForm;
+  export default  IFSC;
 
 
-  class Test extends React.Component {
+  class Search_By_City extends React.Component {
     constructor(props){
       super(props);
       this.state ={
@@ -148,7 +128,7 @@ import { Container, Row, Col } from 'react-grid-system';
       
 
       this.setState({value: value});
-      console.log(value) 
+      
     }
     
     onFormSubmit(e){
