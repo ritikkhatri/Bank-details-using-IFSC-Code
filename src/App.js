@@ -111,57 +111,42 @@ import { Container, Row, Col } from 'react-grid-system';
     constructor(props){
       super(props);
       this.state ={
-        
         value :'',
         bank_name :[],
-        IFSC :[],
-        city :[],
+        
       };
       this.handleChange = this.handleChange.bind(this);
      var that =this ;
     }
-    
     handleChange(e){
       this.setState({value: e.target.value});
     }
     _onChange(value) {
-      
-
-      this.setState({value: value});
-      
+      this.setState({
+        value: value,
+        bank_name :[],
+      });
     }
     
     onFormSubmit(e){
       e.preventDefault();
-      
      var bankname =[];
-     
       var k=0;
-      
       for(var i = 0; i < jsonData.length; i++) {
         var obj = jsonData[i];
     if(obj.CITY ===this.state.value.value){
       bankname[k] = obj;
-      
       k++;
        }
-      
-        
     }
     this.setState({
       bank_name : bankname,
-    
     })
-    
-    
     
     }
 
-    
    render(){
-    
     var Bank_name = this.state.bank_name;
-
     const options = [
       { value: 'SAHARANPUR, UP', label: 'SAHARANPUR, UP' },
       { value: 'ROORKEE', label: 'ROORKEE' },
@@ -171,33 +156,30 @@ import { Container, Row, Col } from 'react-grid-system';
       { value: 'JODHPUR', label: 'JODHPUR'},
       { value: 'AJMER', label: 'AJMER'}
     ]
-   // <input type="text" value={this.state.value} onChange={this.handleChange} />
+  
    return(
-   
      <div>
-       <Row>
+      <Row>
        <Col md={4}></Col>
-       <Col md={4}>
+        <Col md={4}>
         <h1> Search by City Name</h1>
         </Col>
-         
-         </Row>
-         <Row>
+      </Row>
+      <Row>
          <Col md={3}></Col>
          <Col md={6}>
-        <div>
-        Note <br>
-        </br>
-        1. This is just a Demo . There is just sample of Names of Banks in City
-         </div></Col>
+            <div>
+            Note :<br>
+            </br>
+             This is just a Demo . There is just sample of Names of Banks in City
+            </div>
+          </Col>
          
          </Row>
          <br></br>
-         
          <Row>
          <Col md={3}></Col>
          <Col md={4}>
-         
           <div >
          <Select value={this.state.value} placeholder="Choose City" options={options} onChange={this._onChange.bind(this)}/></div></Col>
         <Col md={3}> <input type="submit" value="Submit" onClick={this.onFormSubmit.bind(this)} /></Col>
@@ -206,27 +188,19 @@ import { Container, Row, Col } from 'react-grid-system';
           <Col md={1}></Col>
           <Col md={10}>
         <div className="allBanks">
-      
-         
         {Bank_name.map((bank)=> {
           return(
-            
-            
             <div className="Bank_details">
               <b>Bank Name</b> :   {bank.BANK} <br></br>
               <b>Branch </b>:  {bank.BRANCH} <br></br>
               <b>IFSC Code </b>:  {bank.IFSC} <br></br>
               <b>State</b> :{bank.STATE}<br></br>
               <b>Address</b> : {bank.ADDRESS}<br></br>
-
-
-
             </div>
-         
           )
         })}
-    
-        </div></Col>
+        </div>
+        </Col>
         <Col md={1}></Col>
         </Row>
      </div>
