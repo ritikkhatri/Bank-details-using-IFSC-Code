@@ -23,6 +23,7 @@ import { Container, Row, Col } from 'react-grid-system';
     handleChange(event) {
       this.setState({
         value: event.target.value,
+        result:[],
         }
         );
     }
